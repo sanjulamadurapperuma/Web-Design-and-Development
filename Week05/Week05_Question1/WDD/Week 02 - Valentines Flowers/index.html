@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Valentines Flowers - Order your flowers online</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Valentines Flowers</h1>
+		<div class="product" id="product1">	
+			<img src="images/white.jpeg" alt="White Bouquet" id="whiteBouquet">
+			<div class="description">
+				<figcaption>White Bouquet</figcaption>
+				<div id="whitePrice" class="price">&pound;24</div>	
+			</div>
+		</div>
+	
+		<div class="product" id="product2">
+			<img src="images/pink.jpeg" alt="Pink Bouquet" id="pinkBouquet">
+			<div class="description">
+				<figcaption>Pink Bouquet</figcaption>
+				<div id="pinkPrice" class="price">&pound;25</div>
+			</div>	
+		</div>
+	
+		<div class="product" id="product3">
+			<img src="images/red.jpeg" alt="Red Bouquet" id="redBouquet">
+			<div class="description">
+				<figcaption>Red Bouquet</figcaption>
+				<div id="redPrice" class="price">&pound;20</div>
+			</div>
+		</div>
+
+		<div class="labelOrder">Your Order:<div id="orderDescription"></div><div class="product" id="order"></div></div>
+
+		<form name="order" id="order">
+			Bouquet Options:
+			<select id="bouquetOptions" name="bouquetOptions">
+				<option value="pleaseSelect">Please Select</option>
+				<option value="withChampagne">With Champagne</option>
+				<option value="extra">50% extra flowers</option>
+				<option value="extraWithChampagne" name="select">50% Extra Flowers and Champagne</option>
+			</select>
+			Bouquet Color: 
+			<input type="radio" name="color" id="white" value="white">
+			<label for="white">White</label>
+			<input type="radio" name="color" id="pink" value="pink">
+			<label for="pink">Pink</label>
+			<input type="radio" name="color" id="red" value="red">
+			<label for="red">Red</label>
+
+			<input type="reset" name="reset" value="Clear your order" onreset="resetOrder()">
+			<input type="button" name="submit" value="Place your order" onclick="displayFinalPrice()">
+		</form>
+	</div>
+	<script type="text/javascript">
+		function getRadioValue(radioArray){
+			var i;
+			for (i = 0; i >= radioArray.length; i++) {
+				if (radioArray[i].checked) {
+					return radioArray[i].value;
+				}
+			}
+			return "";
+		}
+
+		function getSelectedValue(selectList){
+			return selectList[selectList.selectedIndex].value;
+		}
+
+		function getSelectedText(selectList){
+			return selectList.options[selectList.selectedIndex].text;
+		}
+
+		var totalPrice = 0;
+
+		function checkOptions(formRef){
+			if (getSelectedValue(formRef.elements["bouquetOptions"]).includes("Champagne")) {
+				document.getElementById("whiteBouquet").src="images/white-gift.jpeg";
+				document.getElementById("pinkBouquet").src="images/pink-gift.jpeg";
+				document.getElementById("redBouquet").src="images/red-gift.jpeg";
+			}
+			var chosenBouquet = getRadioValue(formRef.elements["color"]);
+			displayBouquet(chosenBouquet);
+
+			var prices = [24, 25, 50];//default prices of bouquets
+			var selectedOption = getSelectedValue(formRef.elements["bouquetOptions"]);
+
+			//If user selects 50% options from dropdown, update the prices
+			if ((selectedOption == "extra") || (selectedOption == "extraWithChampagne")) {
+				document.getElementById("whitePrice").innerHTML = '&pound;' + prices[0] * 1.5;
+
+				document.getElementById("pinkPrice").innerHTML = '&pound;' + prices[1] * 1.5;
+
+				document.getElementById("redPrice").innerHTML = '&pound;' + prices[2] * 1.5;
+			}
+		}
+		function displayBouquet(bouquet){
+			switch (bouquet){
+				case "white":
+					document.getElementById("order").innerHTML = document.getElementById("product1").innerHTML;
+					totalPrice = document.getElementById("whitePrice").innerHTML;
+					break;
+				case "pink":
+					document.getElementById("order").innerHTML = document.getElementById("product2").innerHTML;
+					totalPrice = document.getElementById("pinkPrice").innerHTML;
+					break;
+				case "red":
+					document.getElementById("order").innerHTML = document.getElementById("product3").innerHTML;
+					totalPrice = document.getElementById("redPrice").innerHTML;
+					break;
+				default:
+					document.getElementById("order").innerHTML = "";
+			}
+		}
+		function resetOrder(){
+			document.getElementById("order").innerHTML = "";
+		}
+
+		document.forms[0].addEventListener("reset", resetOrder);
+
+		document.getElementById("white").addEventListener("click", function(){
+			displayBouquet(this.value)
+		});
+
+		document.getElementById("pink").addEventListener("click", function(){
+			displayBouquet(this.value)
+		});
+
+		document.getElementById("red").addEventListener("click", function(){
+			displayBouquet(this.value)
+		});
+
+		document.getElementById("bouquetOptions").addEventListener("change", function(){
+			checkOptions(this.form)
+		});
+
+		document.getElementById("product1").addEventListener("click", function(){
+			displayBouquet("white");//Load correct image
+			document.getElementById("white").checked = true;//check the corresponding radio button
+		});
+
+		document.getElementById("product2").addEventListener("click", function(){
+			displayBouquet("pink");//Load correct image
+			document.getElementById("pink").checked = true;//check the corresponding radio button
+		});
+
+		document.getElementById("product3").addEventListener("click", function(){
+			displayBouquet("red");//Load correct image
+			document.getElementById("red").checked = true;//check the corresponding radio button
+		});
+
+		function displayFinalPrice(){
+			alert("The total Price is : " + totalPrice);
+		}
+	</script>
+</body>
+</html>

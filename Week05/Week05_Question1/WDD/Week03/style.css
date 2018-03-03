@@ -1,0 +1,55 @@
+*{
+	box-sizing: border-box;
+}
+body{
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", 
+	"DejaVu Sans", Verdana, sans-serif;
+	font-style: normal;
+	font-size: 16px;
+	margin: 0;
+}
+
+.column{
+	float: left;
+	padding: 10px;
+	height: 300px;
+}
+.navColumn{
+	float: left;
+	padding: 10px;
+	height: 150px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.left, .right{
+	width: 25%;
+}
+.middle{
+	width: 50%;
+}
+.imageOfCharacter{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.nameOfCharacter{
+	color: #ffcc00;
+	font-weight: bold;
+}
+.favouted, .noFavouted{
+	margin-left: 70%;
+}
+.favourite, .rateImage, .addToBasket{
+	margin-left: 25%;
+	margin-right: 50%;
+}
+hr{
+	margin-left: 5%;
+	margin-right: 15%;
+}
+#footer{
+	margin-left: 34%;
+	margin-right: 30%;
+}
+
