@@ -1,0 +1,103 @@
+/**
+ * The primary stylesheet for the CSS Grid.
+ * This sheet pulls in surrounding components allowing you to focus on specifics.
+ */
+
+/* Components */
+
+
+@import url('CSS/layout.css');
+@import url('CSS/typography.css');
+@import url('CSS/boxes.css');
+
+/* CSS Grid Playground */
+
+.the-grid {
+	display: grid;
+	padding: 10px;
+	grid-template-columns: 350px auto;
+	grid-template-rows: auto;
+	grid-template-areas: 
+	'header recipe recipe recipe'
+	'sidebarleft instructions instructions instructions'
+	'sidemenu nutrition nutrition nutrition'
+	'sidemenu image'
+	'ingredients preparation preparation preparation'
+	'share comments comments comments'
+	'footer footer footer footer';
+	grid-gap: 6px;
+}
+
+.box1{
+	grid-area: header;
+	grid-column: 1/1;
+	grid-row: 1/1;
+
+}
+
+.box2{
+	grid-area: recipe;
+	grid-column: 2/4;
+	grid-row: 1/1;
+}
+
+.box3{
+	grid-area: sidebarleft;
+	grid-column: 1/1;
+	grid-row: 2/2;
+}
+
+.box4{
+	grid-area: instructions;
+	grid-column: 2/4;
+	grid-row: 2/2;
+}
+
+.box5{
+	grid-area: sidemenu;
+	grid-column: 1/1;
+	grid-row: 3/4;
+}
+
+.box6{
+	grid-area: nutrition;
+	grid-column: 2/4;
+	grid-row: 3/3;
+}
+
+.box7{
+	grid-area: image;
+	grid-column: 2/4;
+	grid-row: 4/4;
+}
+
+.box8{
+	grid-area: ingredients;
+	grid-column: 1/1;
+	grid-row: 5/7;
+}
+
+.box9{
+	grid-area: preparation;
+	grid-column: 2/4;
+	grid-row: 5/7;
+}
+
+.box10{
+	grid-area: share;
+	grid-column: 1/1;
+	grid-row: 8/8;
+}
+
+.box11{
+	grid-area: comments;
+	grid-column: 2/4;
+	grid-row: 8/8;
+}
+
+.box12{
+	grid-area: footer;
+	grid-column: 1/4;
+	grid-row: 9/9;
+}
+
